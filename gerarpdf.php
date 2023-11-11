@@ -5,54 +5,75 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtém os dados do formulário
-    $days = $_POST['day'];
-    $preWorkouts = $_POST['preWorkout'];
-    $distances = $_POST['distance'];
-    $methods = $_POST['method'];
-    $speeds = $_POST['speed'];
-    $times = $_POST['time'];
-    $paces = $_POST['pace'];
-    $observations = $_POST['observations'];
+    // Obtém o ID do aluno selecionado no campo de seleção
+    $alunoId = $_POST['aluno_id'];
 
-    // Cria um novo objeto DOMPDF
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "teste";
+    
+    $conn = new mysqli($servername, $username, $password, $database);
+    
+    // Verificar a conexão
+    if ($conn->connect_error) {
+        die("Conexão falhou: " . $conn->connect_error);
+    }
+
+    // Verificar a conexão com o banco de dados
+    if ($conn->connect_error) {
+        die("Erro na conexão: " . $conn->connect_error);
+    }
+
+    // Consulta preparada para recuperar o nome do aluno selecionado
+    $sql = "SELECT nome FROM alunos WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $alunoId);
+    $stmt->execute();
+    $stmt->bind_result($alunoNome);
+    $stmt->fetch();
+    $stmt->close();
+    
+    // Criar um novo objeto DOMPDF
     $options = new Options();
     $options->set('isHtml5ParserEnabled', true);
     $dompdf = new Dompdf($options);
 
     // Conteúdo HTML para o PDF
     $html = '<h1>Relatório de Treinamento</h1>';
+    $html .= '<h2>Informações do Aluno</h2>';
+    $html .= '<p><strong>Nome do Aluno:</strong> ' . htmlspecialchars($alunoNome) . '</p>';
 
-    // Itera sobre os dados do formulário e adiciona ao HTML
-    for ($i = 0; $i < count($days); $i++) {
-        $html .= '<h2>Dia da Semana: ' . htmlspecialchars($days[$i]) . '</h2>';
-        $html .= '<p><strong>Pré Treino:</strong> ' . htmlspecialchars($preWorkouts[$i]) . '</p>';
-        $html .= '<p><strong>Distância:</strong> ' . htmlspecialchars($distances[$i]) . '</p>';
-        $html .= '<p><strong>Método:</strong> ' . htmlspecialchars($methods[$i]) . '</p>';
-        $html .= '<p><strong>Velocidade:</strong> ' . htmlspecialchars($speeds[$i]) . '</p>';
-        $html .= '<p><strong>Tempo:</strong> ' . htmlspecialchars($times[$i]) . '</p>';
-        $html .= '<p><strong>Ritmo Min/km:</strong> ' . htmlspecialchars($paces[$i]) . '</p>';
+    // Iterar sobre os dados do formulário e adicioná-los ao HTML
+    $html .= '<h2>Dados de Treinamento</h2>';
+    for ($i = 0; $i < count($_POST['day']); $i++) {
+        $html .= '<h3>Dia da Semana: ' . htmlspecialchars($_POST['day'][$i]) . '</h3>';
+        $html .= '<p><strong>Pré Treino:</strong> ' . htmlspecialchars($_POST['preWorkout'][$i]) . '</p>';
+        $html .= '<p><strong>Distância:</strong> ' . htmlspecialchars($_POST['distance'][$i]) . '</p>';
+        $html .= '<p><strong>Método:</strong> ' . htmlspecialchars($_POST['method'][$i]) . '</p>';
+        $html .= '<p><strong>Velocidade:</strong> ' . htmlspecialchars($_POST['speed'][$i]) . '</p>';
+        $html .= '<p><strong>Tempo:</strong> ' . htmlspecialchars($_POST['time'][$i]) . '</p>';
+        $html .= '<p><strong>Ritmo Min/km:</strong> ' . htmlspecialchars($_POST['pace'][$i]) . '</p>';
         
-        // Verifica se há observações para o dia atual
-        if (isset($observations[$i])) {
-            $html .= '<p><strong>Observações:</strong> ' . htmlspecialchars($observations[$i]) . '</p>';
+        if (isset($_POST['observations'][$i])) {
+            $html .= '<p><strong>Observações:</strong> ' . htmlspecialchars($_POST['observations'][$i]) . '</p>';
         } else {
             $html .= '<p><strong>Observações:</strong> Nenhuma observação fornecida.</p>';
         }
-        
-        $html .= '';
+
+        $html .= '<hr>';
     }
 
-    // Carrega o conteúdo HTML no DOMPDF
+    // Carregar o conteúdo HTML no DOMPDF
     $dompdf->loadHtml($html);
 
-    // Renderiza o PDF
+    // Renderizar o PDF
     $dompdf->render();
 
     // Nome do arquivo PDF
     $filename = "relatorio_treinamento.pdf";
 
-    // Envia o PDF para o navegador para download
+    // Enviar o PDF para o navegador para download
     $dompdf->stream($filename, array("Attachment" => 0));
     exit();
 }
