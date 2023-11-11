@@ -1,0 +1,11 @@
+{
+    "name": "top/projeto-novo",
+    "autoload": {
+        "psr-4": {
+            "Top\\ProjetoNovo\\": "src/"
+        }
+    },
+    "require": {
+        "dompdf/dompdf": "^2.0"
+    }
+}
