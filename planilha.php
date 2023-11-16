@@ -114,3 +114,5 @@
             console.log(formData);
         });
     </script>
+
+<?php include "template/footer.php"; ?>

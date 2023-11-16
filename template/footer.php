@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <script type="text/javascript" src="/js/script.js"></script>
-    <meta charset="UTF-8">
-    <link rel = "stylesheet" type="text/css" href=" css/bootstrap.min.css"/>
-    <link rel=" stylesheet" type="text/css" href="css/style.css"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=[device-width], initial-scale=1.0">
-    <title>Percorrer</title>
+<style>
+.footer{
+
+    background-color: rgb(44, 115, 235);
+    text-align: center;
+    padding: 10px;
+    color: white;
+    padding-top: 10px;
+}
+
+</style>
+    
 </head>
 <body>
+<footer class="footer">
+    <div class="container-footer">
+        <div class="row-footer">          
+            <div class="footer-col">
+                <h4></h4>
+            </div>
+            <div class="footer-col">          
+                <h4>&copy; Copyright. Todos os direitos reservados - Forrest Run - 2023</h4>
+            </div>
+        </div>
+    </div>
+</footer>
 
+</body>
