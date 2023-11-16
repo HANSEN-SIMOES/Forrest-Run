@@ -38,3 +38,15 @@
               <span class="visually-hidden">Next</span>
             </button>
           </div>
+          <footer class="footer">
+      <div class="container-footer">
+        <div class="row-footer">          
+         <div class="footer-col">
+            <h4></h4>
+          </div>
+          <div class="footer-col">          
+            <h4>&copy;  Copyright. Todos os direitos reservados - Forrest Run - 2023.</h4>
+          </div>
+        </div>
+      </div>
+    </footer>
