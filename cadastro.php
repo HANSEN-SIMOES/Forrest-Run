@@ -1,9 +1,7 @@
 <?php include "template/header.php"; ?>
 
 
-<?php
-        include "template/footer.php";
-?>
+
 
 <div class="container mt-5">
         <h1 class="text-center">Cadastro de Alunos</h1>
@@ -61,7 +59,7 @@
 
 
 
-
+                
 
                 </div>
             </div>
@@ -69,3 +67,7 @@
         
         </form>
     </div>
+
+    <?php
+        include "template/footer.php";
+?>

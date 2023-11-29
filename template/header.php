@@ -31,6 +31,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="planilha.php">Criar planilha</a>
                         </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="perfil_aluno.php">Perfil do Aluno</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="sobre.php">Sobre</a>
+                        </li>
                     </ul>
                     <a href="login.php" class="btn btn-danger">Encerrar Sessão</a>
                 </div>
