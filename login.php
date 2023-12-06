@@ -10,7 +10,6 @@
     <div class="main-login">
         <div class="left-login">
             <h1>Faça login<br>E comece a correr</h1>
-            <img src="corredor.svg" class="left-login-img" alt="Corredor__anim">
         </div>
         <div class="right-login">
             <div class="card-login">
@@ -32,7 +31,7 @@
             var btnLogin = document.querySelector(".btn-login");
 
             btnLogin.addEventListener("click", function () {
-                window.location.href = "index.html";
+                window.location.href = "index.php";
             });
         });
     </script>

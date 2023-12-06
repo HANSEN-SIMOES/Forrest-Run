@@ -15,13 +15,12 @@
             padding: 10px;
             color: white;
             padding-top: 10px;
-            margin-top: auto; /* Isso faz com que o footer sempre fique no final da página */
+            margin-top: auto; 
         }
     </style>
 </head>
 <body>
 
-    <!-- Seu conteúdo vai aqui -->
 
     <footer class="footer">
         <div class="container-footer">

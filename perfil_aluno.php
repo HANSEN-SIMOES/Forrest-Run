@@ -8,11 +8,11 @@
             <select class="form-control" id="aluno_id" name="aluno_id" required>
                 <option value="">Selecione um aluno</option>
                 <?php
-                // Inclua a conexão com o banco de dados aqui se ainda não estiver incluída
+                
                 $servername = "localhost";
                 $username = "root";
                 $password = "";
-                $database = "teste";
+                $database = "forrest";
 
                 $conn = new mysqli($servername, $username, $password, $database);
 

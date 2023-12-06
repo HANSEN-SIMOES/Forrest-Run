@@ -1,18 +1,26 @@
 <?php
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $database = "forrest";
 
-class BancoDados{
-     private static $conexao; 
+                $conn = new mysqli($servername, $username, $password, $database);
 
-     public static function obterConexao(){
+                // Verificar a conexão
+                if ($conn->connect_error) {
+                    die("Erro na conexão: " . $conn->connect_error);
+                }
 
-        if (isset($conexao) == false){
+                // Consulta para recuperar nomes dos alunos
+                $sql = "SELECT id, nome FROM alunos";
+                $result = $conn->query($sql);
 
-            $conexao = new PDO("mysql: dbname = forrest; host = localhost","root", "root"); 
+                // Popular o campo de seleção com os nomes dos alunos
+                while ($row = $result->fetch_assoc()) {
+                    echo '<option value="' . $row['id'] . '">' . $row['nome'] . '</option>';
+                }
 
-            $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO:: ERRMODE_EXCEPTION); 
-            
-        }
-        return $conexao; 
-     }
-}
->?
+                // Fechar a conexão com o banco de dados
+                $conn->close();
+
+?>

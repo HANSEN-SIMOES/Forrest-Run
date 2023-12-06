@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-// Verificar se o formulário foi enviado
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Capturar dados do formulário
     $nome = $_POST["nome"];

@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $database = "teste";
+    $database = "forrest";
     
     $conn = new mysqli($servername, $username, $password, $database);
     
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Iterar sobre os dados do formulário e adicioná-los ao HTML
     $html .= '<h2>Dados de Treinamento</h2>';
     for ($i = 0; $i < count($_POST['day']); $i++) {
-        $html .= '<h3>Dia da Semana: ' . htmlspecialchars($_POST['day'][$i]) . '</h3>';
+        $html .= '<h3>Data: ' . htmlspecialchars($_POST['day'][$i]) . '</h3>';
         $html .= '<p><strong>Pré Treino:</strong> ' . htmlspecialchars($_POST['preWorkout'][$i]) . '</p>';
         $html .= '<p><strong>Distância:</strong> ' . htmlspecialchars($_POST['distance'][$i]) . '</p>';
         $html .= '<p><strong>Método:</strong> ' . htmlspecialchars($_POST['method'][$i]) . '</p>';
